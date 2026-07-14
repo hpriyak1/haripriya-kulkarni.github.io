@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haripriya Kulkarni — QA Automation Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F7F9;
+    --surface:#FFFFFF;
+    --ink:#16202B;
+    --ink-soft:#4B5768;
+    --ink-faint:#8993A1;
+    --line:#DEE2E8;
+    --blue:#3255D6;
+    --blue-soft:#EBEFFC;
+    --amber:#E2932F;
+    --amber-soft:#FBF0E0;
+    --green:#1F9D55;
+    --green-soft:#E7F6ED;
+    --panel:#101826;
+    --panel-line:#26334A;
+    --radius:10px;
+    --disp:'Space Grotesk',sans-serif;
+    --body:'IBM Plex Sans',sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--blue); outline-offset:3px; border-radius:4px;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:var(--disp); margin:0; letter-spacing:-0.01em;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,247,249,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:1080px; margin:0 auto;}
+  .nav-mark{font-family:var(--mono); font-weight:500; font-size:14px; letter-spacing:0.02em; display:flex; align-items:center; gap:8px;}
+  .nav-mark .dot{width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 3px var(--green-soft);}
+  .nav-links{display:flex; gap:28px; font-size:14px; font-weight:500;}
+  .nav-links a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{color:var(--blue);}
+  .nav-cta{
+    font-family:var(--mono); font-size:13px; font-weight:500;
+    background:var(--ink); color:#fff; padding:9px 16px; border-radius:6px; text-decoration:none;
+    white-space:nowrap;
+  }
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:64px 0 40px;}
+  .pipeline{
+    background:var(--panel);
+    border-radius:var(--radius);
+    padding:22px 26px;
+    color:#fff;
+    display:flex; align-items:center; gap:0;
+    overflow-x:auto;
+    margin-bottom:44px;
+  }
+  .stage{display:flex; align-items:center; gap:12px; flex-shrink:0;}
+  .stage-badge{
+    width:34px; height:34px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--mono); font-size:14px; font-weight:500;
+    border:1.5px solid var(--panel-line); background:#0B1220; flex-shrink:0;
+    opacity:0; transform:scale(.7);
+    animation:pop .45s ease forwards;
+  }
+  .stage:nth-child(1) .stage-badge{animation-delay:.1s;}
+  .stage:nth-child(3) .stage-badge{animation-delay:.6s;}
+  .stage:nth-child(5) .stage-badge{animation-delay:1.1s;}
+  @keyframes pop{to{opacity:1; transform:scale(1);}}
+  .stage-badge.done{background:var(--green-soft); border-color:var(--green); color:var(--green);}
+  .stage-badge.live{background:var(--amber-soft); border-color:var(--amber); color:var(--amber); animation:pop .45s ease forwards, pulse 2s ease-in-out 1.6s infinite;}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(226,147,47,.45);} 50%{box-shadow:0 0 0 7px rgba(226,147,47,0);}}
+  .stage-text{display:flex; flex-direction:column; gap:1px;}
+  .stage-label{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:#7C8AA5; text-transform:uppercase;}
+  .stage-sub{font-family:var(--mono); font-size:12.5px; color:#fff;}
+  .stage-line{
+    width:52px; height:1.5px; background:var(--panel-line); flex-shrink:0; margin:0 10px;
+    position:relative; overflow:hidden;
+  }
+  .stage-line::after{
+    content:''; position:absolute; inset:0; background:var(--green);
+    transform:scaleX(0); transform-origin:left; animation:fill .4s ease forwards;
+  }
+  .stage-line:nth-of-type(2)::after{animation-delay:.5s;}
+  .stage-line:nth-of-type(4)::after{animation-delay:1s; background:var(--amber);}
+  @keyframes fill{to{transform:scaleX(1);}}
+
+  .eyebrow{font-family:var(--mono); font-size:12.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--blue); margin-bottom:14px; display:flex; align-items:center; gap:8px;}
+  .eyebrow::before{content:''; width:16px; height:1.5px; background:var(--blue); display:inline-block;}
+
+  .hero h1{font-size:clamp(38px,6vw,64px); font-weight:700; line-height:1.02;}
+  .hero .role{font-family:var(--disp); font-size:clamp(18px,2.4vw,22px); font-weight:500; color:var(--blue); margin-top:10px;}
+  .hero p.summary{max-width:620px; color:var(--ink-soft); font-size:16.5px; margin:22px 0 28px;}
+  .contact-row{display:flex; flex-wrap:wrap; gap:12px;}
+  .chip-link{
+    display:flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:13px;
+    background:var(--surface); border:1px solid var(--line); padding:9px 14px; border-radius:7px;
+    text-decoration:none; color:var(--ink-soft); transition:border-color .15s, color .15s, transform .15s;
+  }
+  .chip-link:hover{border-color:var(--blue); color:var(--blue); transform:translateY(-1px);}
+  .chip-link.primary{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .chip-link.primary:hover{background:var(--blue); border-color:var(--blue); color:#fff;}
+
+  /* ---------- STATS ---------- */
+  .stats{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+    margin:8px 0 88px;
+  }
+  .stat{background:var(--surface); padding:26px 22px;}
+  .stat .num{font-family:var(--disp); font-size:34px; font-weight:700; color:var(--ink);}
+  .stat .label{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin-top:6px; letter-spacing:.02em;}
+
+  /* ---------- SECTION shared ---------- */
+  section{padding:0 0 92px;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:34px; gap:20px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(26px,3.4vw,34px);}
+  .section-note{font-family:var(--mono); font-size:12.5px; color:var(--ink-faint);}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .job{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px 32px; margin-bottom:20px;
+  }
+  .job-head{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:10px 24px; margin-bottom:6px;}
+  .job-title{font-family:var(--disp); font-size:19px; font-weight:600;}
+  .job-company{color:var(--blue); font-weight:500;}
+  .job-meta{font-family:var(--mono); font-size:12.5px; color:var(--ink-faint); text-align:right;}
+  ul.assertions{list-style:none; margin:18px 0 0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  ul.assertions li{display:flex; gap:12px; font-size:14.5px; color:var(--ink-soft);}
+  ul.assertions li::before{
+    content:'✓'; flex-shrink:0; width:20px; height:20px; border-radius:5px;
+    background:var(--green-soft); color:var(--green); font-size:12px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .projects-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .project{
+    background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; display:flex; flex-direction:column; gap:14px;
+  }
+  .project .pname{font-family:var(--disp); font-size:18px; font-weight:600;}
+  .project .pdesc{color:var(--ink-soft); font-size:14.5px;}
+  .tagrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; padding-top:6px;}
+  .tag{font-family:var(--mono); font-size:11.5px; background:var(--blue-soft); color:var(--blue); padding:5px 10px; border-radius:5px;}
+  .project .pdate{font-family:var(--mono); font-size:12px; color:var(--ink-faint);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px 40px;}
+  .skill-group{border-top:1.5px solid var(--line); padding-top:14px;}
+  .skill-group h3{font-family:var(--mono); font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-weight:500; margin-bottom:12px;}
+  .skill-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-chip{font-family:var(--mono); font-size:12.5px; background:var(--surface); border:1px solid var(--line); padding:6px 11px; border-radius:6px; color:var(--ink-soft);}
+
+  /* ---------- EDU / CERTS ---------- */
+  .edu-grid{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  .edu-card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:26px 28px;}
+  .edu-card h3{font-family:var(--disp); font-size:16.5px; font-weight:600; margin-bottom:4px;}
+  .edu-card .sub{color:var(--ink-soft); font-size:14px; margin-bottom:4px;}
+  .edu-card .meta{font-family:var(--mono); font-size:12px; color:var(--ink-faint);}
+  .cert-item{padding:14px 0; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .cert-item:last-child{border-bottom:none;}
+  .cert-name{font-size:14px; color:var(--ink); font-weight:500;}
+  .cert-meta{font-family:var(--mono); font-size:12px; color:var(--ink-faint);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--panel); color:#fff; padding:64px 0 40px;}
+  footer .wrap{display:flex; flex-direction:column; align-items:flex-start; gap:28px;}
+  footer h2{font-size:clamp(26px,4vw,38px); max-width:560px;}
+  .footer-links{display:flex; flex-wrap:wrap; gap:12px;}
+  footer .chip-link{background:#182236; border-color:var(--panel-line); color:#D7DCE6;}
+  footer .chip-link:hover{border-color:var(--amber); color:var(--amber);}
+  .fine{font-family:var(--mono); font-size:11.5px; color:#5C6980; margin-top:20px;}
+
+  @media (max-width:760px){
+    .nav-links{display:none;}
+    .stats{grid-template-columns:1fr 1fr;}
+    .projects-grid, .skills-grid, .edu-grid{grid-template-columns:1fr;}
+    .job-head{flex-direction:column;}
+    .job-meta{text-align:left;}
+    .pipeline{gap:0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-mark"><span class="dot"></span> HARIPRIYA.KULKARNI</div>
+    <nav class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+    </nav>
+    <a class="nav-cta" href="mailto:haripriyakulkarni456@gmail.com">Get in touch</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="pipeline">
+      <div class="stage">
+        <div class="stage-badge done">✓</div>
+        <div class="stage-text"><span class="stage-label">Build</span><span class="stage-sub">2.5+ yrs experience</span></div>
+      </div>
+      <div class="stage-line"></div>
+      <div class="stage">
+        <div class="stage-badge done">✓</div>
+        <div class="stage-text"><span class="stage-label">Test</span><span class="stage-sub">500+ cases automated</span></div>
+      </div>
+      <div class="stage-line"></div>
+      <div class="stage">
+        <div class="stage-badge live">●</div>
+        <div class="stage-text"><span class="stage-label">Deploy</span><span class="stage-sub">Open to new roles</span></div>
+      </div>
+    </div>
+
+    <div class="eyebrow">Quality Assurance — Automation</div>
+    <h1>Haripriya Kulkarni</h1>
+    <div class="role">QA Automation Engineer</div>
+    <p class="summary">I build test automation frameworks that catch regressions before users do. 2.5+ years across Selenium, Java, and TestNG — with hands-on work in mobile, API, and AI-assisted testing, shipped across 20+ production releases in fast-moving Agile teams.</p>
+    <div class="contact-row">
+      <a class="chip-link primary" href="mailto:haripriyakulkarni456@gmail.com">✉ haripriyakulkarni456@gmail.com</a>
+      <a class="chip-link" href="tel:+917349229852">☎ +91 7349229852</a>
+      <a class="chip-link" href="https://linkedin.com/in/haripriya-kulkarni-963376345" target="_blank" rel="noopener">in/haripriya-kulkarni</a>
+      <span class="chip-link" style="cursor:default;">📍 Bengaluru, Karnataka</span>
+    </div>
+  </section>
+
+  <div class="stats reveal">
+    <div class="stat"><div class="num">2.5+</div><div class="label">YEARS IN TEST AUTOMATION</div></div>
+    <div class="stat"><div class="num">500+</div><div class="label">TEST CASES AUTOMATED</div></div>
+    <div class="stat"><div class="num">60%</div><div class="label">REGRESSION EFFORT CUT</div></div>
+    <div class="stat"><div class="num">20+</div><div class="label">PRODUCTION RELEASES</div></div>
+  </div>
+
+  <section id="experience">
+    <div class="section-head reveal">
+      <h2>Experience</h2>
+      <span class="section-note">2 roles · Bengaluru, Karnataka</span>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head">
+        <div><span class="job-title">Quality Assurance Engineer</span><br><span class="job-company">Neokred Pvt Ltd</span></div>
+        <div class="job-meta">Aug 2025 – Apr 2026<br>Bengaluru, Karnataka</div>
+      </div>
+      <ul class="assertions">
+        <li>Owned end-to-end QA for a GDPR-compliant Consent and Cookie Management Platform, designing and executing 500+ test cases across UI, API, database, and compliance workflows with Selenium WebDriver and Java.</li>
+        <li>Built a Selenium, Java, and TestNG Page Object Model framework from scratch, automating 200+ regression cases with dynamic test data strategies and cutting manual testing effort by 60%.</li>
+        <li>Integrated automation suites into Jenkins and GitHub Actions CI/CD pipelines and implemented BDD (Cucumber) scenarios as production-grade quality gates on every build.</li>
+        <li>Applied AI-assisted test generation and GenAI/MCP tooling, including GitHub Copilot, to accelerate coverage and reduce script maintenance through self-healing automation.</li>
+        <li>Logged 150+ defects in JIRA with detailed root cause analysis, partnering with developers and product owners across 20+ production releases.</li>
+      </ul>
+    </div>
+
+    <div class="job reveal">
+      <div class="job-head">
+        <div><span class="job-title">Associate Software Engineer</span><br><span class="job-company">FireFlink Pvt Ltd</span></div>
+        <div class="job-meta">Oct 2023 – Aug 2025<br>Bengaluru, Karnataka</div>
+      </div>
+      <ul class="assertions">
+        <li>Designed Selenium, Java, and TestNG Page Object Model frameworks automating 250+ test cases, cutting regression effort by 20% through reusable, scalable components.</li>
+        <li>Ran cross-browser testing across Chrome, Firefox, Edge, and Safari using BrowserStack and Sauce Labs, integrated into Jenkins and GitHub Actions CI/CD pipelines.</li>
+        <li>Implemented data-driven and BDD testing approaches with dynamic test data strategies to improve framework scalability and maintainability.</li>
+        <li>Investigated root causes of production and pre-production defects, partnering with developers on RCA and sustainable fixes across 20+ releases.</li>
+        <li>Conducted mobile testing on Android and iOS with Appium, and supported UAT and defect triage across 15+ product releases.</li>
+        <li>Built REST-Assured automation scripts for CRUD operations, and ran API integration and regression testing with Postman.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head reveal">
+      <h2>Projects</h2>
+      <span class="section-note">Selected work</span>
+    </div>
+    <div class="projects-grid">
+      <div class="project reveal">
+        <div class="pdate">2025 – 2026</div>
+        <div class="pname">Blutic — GDPR Consent &amp; Cookie Management Platform</div>
+        <div class="pdesc">Owned test strategy and execution for a compliance-critical platform, covering UI, API, database, and regulatory workflow validation, fully wired into GitHub Actions CI/CD.</div>
+        <div class="tagrow">
+          <span class="tag">Selenium</span><span class="tag">Java</span><span class="tag">GitHub Actions</span><span class="tag">GDPR</span>
+        </div>
+      </div>
+      <div class="project reveal">
+        <div class="pdate">2023 – 2025</div>
+        <div class="pname">FireFlink Cloud — AI-Powered Cross-Platform Test Automation</div>
+        <div class="pdesc">Validated a cross-platform AI-driven automation tool spanning Web, Android, iOS, and API layers using hybrid keyword and data-driven frameworks with dynamic XPath/CSS locators. Ran parallel execution via Selenium Grid across BrowserStack, Sauce Labs, and FireFlink Cloud.</div>
+        <div class="tagrow">
+          <span class="tag">Selenium Grid</span><span class="tag">TestNG</span><span class="tag">Jenkins</span><span class="tag">Appium</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head reveal">
+      <h2>Skills</h2>
+      <span class="section-note">Tools &amp; coverage areas</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h3>Languages</h3>
+        <div class="skill-chips"><span class="skill-chip">Java</span><span class="skill-chip">JavaScript</span><span class="skill-chip">SQL</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Automation Tools</h3>
+        <div class="skill-chips"><span class="skill-chip">Selenium WebDriver</span><span class="skill-chip">TestNG</span><span class="skill-chip">Appium</span><span class="skill-chip">Selenium Grid</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Frameworks</h3>
+        <div class="skill-chips"><span class="skill-chip">Page Object Model</span><span class="skill-chip">Data-Driven</span><span class="skill-chip">Hybrid</span><span class="skill-chip">BDD / Cucumber</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>CI/CD &amp; Version Control</h3>
+        <div class="skill-chips"><span class="skill-chip">Jenkins</span><span class="skill-chip">GitHub Actions</span><span class="skill-chip">Maven</span><span class="skill-chip">Git</span><span class="skill-chip">JIRA</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>API Testing</h3>
+        <div class="skill-chips"><span class="skill-chip">Postman</span><span class="skill-chip">REST-Assured</span><span class="skill-chip">REST API Validation</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>AI / GenAI Testing</h3>
+        <div class="skill-chips"><span class="skill-chip">GitHub Copilot</span><span class="skill-chip">ChatGPT</span><span class="skill-chip">Claude AI</span><span class="skill-chip">AI-Assisted Test Gen</span><span class="skill-chip">MCP Tooling</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Cloud / Cross-Browser</h3>
+        <div class="skill-chips"><span class="skill-chip">BrowserStack</span><span class="skill-chip">Sauce Labs</span><span class="skill-chip">FireFlink Cloud</span></div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Methodologies &amp; Test Types</h3>
+        <div class="skill-chips"><span class="skill-chip">Agile Scrum</span><span class="skill-chip">SDLC</span><span class="skill-chip">STLC</span><span class="skill-chip">Regression</span><span class="skill-chip">Smoke</span><span class="skill-chip">UAT</span><span class="skill-chip">E2E</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head reveal">
+      <h2>Education &amp; Certifications</h2>
+      <span class="section-note">Foundations</span>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal">
+        <h3>B.E., Electronics &amp; Communication Engineering</h3>
+        <div class="sub">PDA College of Engineering, Kalaburagi</div>
+        <div class="meta">Jun 2019 – Jun 2023 · CGPA 8.50/10</div>
+      </div>
+      <div class="edu-card reveal">
+        <h3 style="margin-bottom:14px;">Certifications</h3>
+        <div class="cert-item">
+          <span class="cert-name">Selenium WebDriver with Java — Basics to Advanced &amp; Frameworks</span>
+          <span class="cert-meta">Udemy · 2025</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-name">Playwright JS/TS Automation Testing from Scratch &amp; Framework</span>
+          <span class="cert-meta">Udemy · 2026</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Let's ship reliable software together.</h2>
+    <div class="footer-links">
+      <a class="chip-link" href="mailto:haripriyakulkarni456@gmail.com">✉ haripriyakulkarni456@gmail.com</a>
+      <a class="chip-link" href="tel:+917349229852">☎ +91 7349229852</a>
+      <a class="chip-link" href="https://linkedin.com/in/haripriya-kulkarni-963376345" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="fine">© 2026 Haripriya Kulkarni · Bengaluru, Karnataka</div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
